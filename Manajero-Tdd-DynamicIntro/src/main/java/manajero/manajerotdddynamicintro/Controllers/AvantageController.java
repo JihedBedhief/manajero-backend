@@ -1,28 +1,30 @@
 package manajero.manajerotdddynamicintro.Controllers;
 
-import manajero.manajerotdddynamicintro.Entity.What;
-import manajero.manajerotdddynamicintro.Entity.Why;
-import manajero.manajerotdddynamicintro.Services.WhatService;
+import manajero.manajerotdddynamicintro.Entity.Avantage;
+import manajero.manajerotdddynamicintro.Entity.Limitation;
+import manajero.manajerotdddynamicintro.Services.AvantageService;
+import manajero.manajerotdddynamicintro.Services.LimitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/what")
+@RequestMapping("/api/avantage")
 @CrossOrigin(origins = "http://localhost:4200")
-public class WhatController {
+public class AvantageController {
 
     @Autowired
-    private WhatService service;
+    private AvantageService service;
 
     @GetMapping
-    public List<What> getAll() {
+    public List<Avantage> getAll() {
         return service.getAll();
     }
 
     @PostMapping
-    public What save(@RequestBody What entity) {
+    public Avantage save(@RequestBody Avantage entity) {
         return service.save(entity);
     }
 
@@ -30,13 +32,14 @@ public class WhatController {
     public void delete(@PathVariable String id) {
         service.delete(id);
     }
+
     @GetMapping("/{id}")
-    public Optional<What> getById(@PathVariable String id) {
+    public Optional<Avantage> getById(@PathVariable String id) {
         return service.getById(id);
     }
 
     @PutMapping("/{id}")
-    public What update(@PathVariable String id, @RequestBody What newEntity) {
+    public Avantage update(@PathVariable String id, @RequestBody Avantage newEntity) {
         return service.update(id, newEntity);
     }
 }

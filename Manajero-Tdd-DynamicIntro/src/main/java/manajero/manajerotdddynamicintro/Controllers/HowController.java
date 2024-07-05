@@ -1,28 +1,29 @@
 package manajero.manajerotdddynamicintro.Controllers;
 
+import manajero.manajerotdddynamicintro.Entity.How;
 import manajero.manajerotdddynamicintro.Entity.What;
-import manajero.manajerotdddynamicintro.Entity.Why;
+import manajero.manajerotdddynamicintro.Services.HowService;
 import manajero.manajerotdddynamicintro.Services.WhatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/what")
+@RequestMapping("/api/how")
 @CrossOrigin(origins = "http://localhost:4200")
-public class WhatController {
-
+public class HowController {
     @Autowired
-    private WhatService service;
+    private HowService service;
 
     @GetMapping
-    public List<What> getAll() {
+    public List<How> getAll() {
         return service.getAll();
     }
 
     @PostMapping
-    public What save(@RequestBody What entity) {
+    public How save(@RequestBody How entity) {
         return service.save(entity);
     }
 
@@ -31,12 +32,12 @@ public class WhatController {
         service.delete(id);
     }
     @GetMapping("/{id}")
-    public Optional<What> getById(@PathVariable String id) {
+    public Optional<How> getById(@PathVariable String id) {
         return service.getById(id);
     }
 
     @PutMapping("/{id}")
-    public What update(@PathVariable String id, @RequestBody What newEntity) {
+    public How update(@PathVariable String id, @RequestBody How newEntity) {
         return service.update(id, newEntity);
     }
 }

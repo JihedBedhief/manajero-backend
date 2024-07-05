@@ -1,24 +1,27 @@
 package manajero.manajerotdddynamicintro.Services;
 
+import manajero.manajerotdddynamicintro.Entity.Avantage;
+import manajero.manajerotdddynamicintro.Entity.How;
 import manajero.manajerotdddynamicintro.Entity.What;
-import manajero.manajerotdddynamicintro.Entity.Why;
+import manajero.manajerotdddynamicintro.Repository.AvantageReository;
 import manajero.manajerotdddynamicintro.Repository.WhatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
-public class WhatService {
-
+public class AvantageService {
     @Autowired
-    private WhatRepository repository;
+    private AvantageReository repository;
 
-    public List<What> getAll() {
+    public List<Avantage> getAll() {
         return repository.findAll();
     }
 
-    public What save(What entity) {
+    public Avantage save(Avantage entity) {
         return repository.save(entity);
     }
 
@@ -26,18 +29,19 @@ public class WhatService {
         repository.deleteById(id);
     }
 
-    public Optional<What> getById(String id) {
+
+    public Optional<Avantage> getById(String id) {
         return repository.findById(id);
     }
 
-    public What update(String id, What newEntity) {
-        Optional<What> existingEntityOptional = repository.findById(id);
+    public Avantage update(String id, Avantage newEntity) {
+        Optional<Avantage> existingEntityOptional = repository.findById(id);
         if (existingEntityOptional.isPresent()) {
-            What existingEntity = existingEntityOptional.get();
+            Avantage existingEntity = existingEntityOptional.get();
             existingEntity.setDescription(newEntity.getDescription());
             return repository.save(existingEntity);
         } else {
-            throw new IllegalArgumentException("What entity with id " + id + " not found.");
+            throw new IllegalArgumentException("Avantage entity with id " + id + " not found.");
         }
     }
 }
