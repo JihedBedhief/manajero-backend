@@ -1,9 +1,7 @@
 package manajero.manajerotdddynamicintro.Controllers;
 
 import manajero.manajerotdddynamicintro.Entity.WhatIf;
-import manajero.manajerotdddynamicintro.Entity.Why;
 import manajero.manajerotdddynamicintro.Services.WhatIfService;
-import manajero.manajerotdddynamicintro.Services.WhyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

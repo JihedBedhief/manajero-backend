@@ -1,9 +1,7 @@
 package manajero.manajerotdddynamicintro.Controllers;
 
 import manajero.manajerotdddynamicintro.Entity.Limitation;
-import manajero.manajerotdddynamicintro.Entity.What;
 import manajero.manajerotdddynamicintro.Services.LimitationService;
-import manajero.manajerotdddynamicintro.Services.WhatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

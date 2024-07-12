@@ -1,7 +1,8 @@
-package manajero.manajerotdddynamicintro.Controllers;
+package manajero.manajerotddProjectManagment.Controllers;
 
-import manajero.manajerotdddynamicintro.Entity.How;
-import manajero.manajerotdddynamicintro.Services.HowService;
+
+import manajero.manajerotddProjectManagment.Entities.Project;
+import manajero.manajerotddProjectManagment.Services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,19 +10,19 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/how")
+@RequestMapping("/api/project")
 @CrossOrigin(origins = "http://localhost:4200")
-public class HowController {
+public class ProjectController {
     @Autowired
-    private HowService service;
+    private ProjectService service;
 
     @GetMapping
-    public List<How> getAll() {
+    public List<Project> getAll() {
         return service.getAll();
     }
 
     @PostMapping
-    public How save(@RequestBody How entity) {
+    public Project save(@RequestBody Project entity) {
         return service.save(entity);
     }
 
@@ -29,13 +30,15 @@ public class HowController {
     public void delete(@PathVariable String id) {
         service.delete(id);
     }
+
+
     @GetMapping("/{id}")
-    public Optional<How> getById(@PathVariable String id) {
+    public Optional<Project> getById(@PathVariable String id) {
         return service.getById(id);
     }
 
     @PutMapping("/{id}")
-    public How update(@PathVariable String id, @RequestBody How newEntity) {
+    public Project update(@PathVariable String id, @RequestBody Project newEntity) {
         return service.update(id, newEntity);
     }
 }
