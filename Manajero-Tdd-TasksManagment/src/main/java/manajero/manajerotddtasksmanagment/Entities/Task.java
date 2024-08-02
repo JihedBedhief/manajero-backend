@@ -1,4 +1,4 @@
-package manajero.manajerotdddynamicintro.Entity;
+package manajero.manajerotddtasksmanagment.Entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,5 +20,5 @@ public class Task {
     private String description;
     private Date dueDate;
     private String status;
-    private String comments;
+    private List<String> comments;
 }

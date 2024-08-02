@@ -1,8 +1,6 @@
-package manajero.manajerotdddynamicintro.Controllers;
-
-import manajero.manajerotdddynamicintro.Entity.Task;
-import manajero.manajerotdddynamicintro.Services.AccordionService;
-import manajero.manajerotdddynamicintro.Services.TaskService;
+package manajero.manajerotddtasksmanagment.Controllers;
+import manajero.manajerotddtasksmanagment.Entities.Task;
+import manajero.manajerotddtasksmanagment.Services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public void addItem(@RequestBody Task item) {
+    public void addItem(@RequestBody  Task item) {
         taskService.addItem(item);
     }
 
