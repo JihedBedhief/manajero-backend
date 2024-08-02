@@ -1,38 +1,72 @@
 package manajero.manajerotddtasksmanagment.Services;
 
+import lombok.extern.slf4j.Slf4j;
+import manajero.manajerotddtasksmanagment.Controllers.TaskController;
 import manajero.manajerotddtasksmanagment.Entities.Task;
+import manajero.manajerotddtasksmanagment.Entities.TaskDTO;
+import manajero.manajerotddtasksmanagment.Entities.Tests;
 import manajero.manajerotddtasksmanagment.Repository.TaskRepository;
+import manajero.manajerotddtasksmanagment.Repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class TaskService {
     @Autowired
     TaskRepository taskRepository;
+    @Autowired
+    TestRepository testRepository;
 
     public List<Task> getAllItems() {
         return taskRepository.findAll();
     }
 
-    public void addItem(Task item) {
-        taskRepository.save(item);
-    }
+    public Task save(TaskController.RequestPayload payload) {
 
-    public Task updateItem(String id, Task updatedItem) {
-        return taskRepository.findById(id)
-                .map(item -> {
-                    item.setName(updatedItem.getName());
-                    item.setProject(updatedItem.getProject());
-                    item.setAssigned(updatedItem.getAssigned());
-                    item.setDescription(updatedItem.getDescription());
-                    item.setDueDate(updatedItem.getDueDate());
-                    item.setStatus(updatedItem.getStatus());
-                    item.setComments(updatedItem.getComments());
-                    return taskRepository.save(item);
-                }).orElseThrow(() -> new NullPointerException("Item not found"));
+        TaskDTO taskDTO = payload.getTask();
+        Task task = new Task();
+        task.setName(taskDTO.getName());
+        task.setProject(taskDTO.getProject());
+        task.setAssigned(taskDTO.getAssigned());
+        task.setDescription(taskDTO.getDescription());
+        task.setDueDate(taskDTO.getDueDate());
+        task.setComments(taskDTO.getComments());
+        task.setStatus("To do");
+
+        List<Tests> testList = new ArrayList<>();
+        if (payload.getIds() != null) {
+            for (String testId : payload.getIds()) {
+                testRepository.findById(testId).ifPresent(testList::add);
+            }
+        }
+        task.setTests(testList);
+
+        return taskRepository.save(task);
+    }
+    public Task update(String id, TaskDTO taskDTO) {
+        Optional<Task> existingEntityOptional = taskRepository.findById(id);
+        if (existingEntityOptional.isPresent()) {
+            Task existingTask = existingEntityOptional.get();
+            existingTask.setName(taskDTO.getName());
+            existingTask.setProject(taskDTO.getProject());
+            existingTask.setAssigned(taskDTO.getAssigned());
+            existingTask.setDescription(taskDTO.getDescription());
+            existingTask.setDueDate(taskDTO.getDueDate());
+            existingTask.setComments(taskDTO.getComments());
+
+            // Convert test IDs to Tests objects
+            List<Tests> associatedTests = testRepository.findAllById(taskDTO.getTestIds());
+            existingTask.setTests(associatedTests);
+
+            return taskRepository.save(existingTask);
+        } else {
+            throw new IllegalArgumentException("Task entity with id " + id + " not found.");
+        }
     }
 
     public void deleteItem(String id) {

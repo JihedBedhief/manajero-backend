@@ -5,22 +5,14 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-import java.util.List;
-
 @Getter
 @Setter
-@Document(collection = "task")
-public class Task {
+@Document(collection = "test")
+public class Tests {
+
     @Id
     private String id ;
-    private String name;
-    private String project;
-    private String assigned;
+    private String title;
     private String description;
-    private Date dueDate;
-private String status;
-    private String comments;
-    private List<Tests> tests;
-
+    private Boolean status;
 }
