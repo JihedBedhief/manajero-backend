@@ -42,12 +42,9 @@ public class TaskController {
         return taskService.getAllItems();
     }
 
-    @PostMapping()
-    public Task createTask(@RequestBody RequestPayload payload) {
-
-        List<String> ids = payload.getIds();
-        TaskDTO task = payload.getTask();
-        return taskService.save(payload);
+    @PostMapping("/{l}")
+    public Task createTask(@RequestBody  TaskDTO taskDTO, @PathVariable List<String> l) {
+        return taskService.save(taskDTO,l);
     }
 
     @PutMapping("/{id}")

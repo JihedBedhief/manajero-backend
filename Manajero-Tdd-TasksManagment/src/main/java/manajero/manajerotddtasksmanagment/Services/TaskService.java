@@ -26,9 +26,12 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task save(TaskController.RequestPayload payload) {
+    public Task save(TaskDTO taskDTO,List<String>l) {
 
-        TaskDTO taskDTO = payload.getTask();
+        log.info("dto"+taskDTO);
+        log.info("dto"+l);
+
+
         Task task = new Task();
         task.setName(taskDTO.getName());
         task.setProject(taskDTO.getProject());
@@ -39,8 +42,8 @@ public class TaskService {
         task.setStatus("To do");
 
         List<Tests> testList = new ArrayList<>();
-        if (payload.getIds() != null) {
-            for (String testId : payload.getIds()) {
+        if (l != null) {
+            for (String testId : l) {
                 testRepository.findById(testId).ifPresent(testList::add);
             }
         }

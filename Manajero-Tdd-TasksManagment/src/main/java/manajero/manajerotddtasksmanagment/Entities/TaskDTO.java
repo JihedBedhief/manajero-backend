@@ -17,6 +17,5 @@ public class TaskDTO {
     private Date dueDate;
     private String comments;
     private String status;
-
     private List<String> testIds;
 }
