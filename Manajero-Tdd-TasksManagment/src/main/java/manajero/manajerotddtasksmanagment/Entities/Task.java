@@ -19,7 +19,7 @@ public class Task {
     private String assigned;
     private String description;
     private Date dueDate;
-private String status;
+    private String status;
     private String comments;
     private List<Tests> tests;
 

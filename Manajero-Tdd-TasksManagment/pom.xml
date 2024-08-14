@@ -61,7 +61,52 @@
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.3</version> <!-- Use the latest version -->
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit Jupiter Engine (for running tests) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.3</version> <!-- Use the latest version -->
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit Platform Launcher (for running tests from IDE or CLI) -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.9.3</version> <!-- Use the latest version -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>4.5.4</version> <!-- Check for the latest version -->
+        </dependency>
+        <dependency>
+            <groupId>com.github.jai-imageio</groupId>
+            <artifactId>jai-imageio-core</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jai-imageio</groupId>
+            <artifactId>jai-imageio-jpeg2000</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+
     </dependencies>
+    <repositories>
+        <repository>
+            <id>java.net</id>
+            <url>https://download.java.net/maven/2/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

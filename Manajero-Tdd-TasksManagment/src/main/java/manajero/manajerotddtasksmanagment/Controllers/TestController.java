@@ -3,12 +3,16 @@ package manajero.manajerotddtasksmanagment.Controllers;
 
 
 import manajero.manajerotddtasksmanagment.Entities.Tests;
+import manajero.manajerotddtasksmanagment.Repository.TestRepository;
 import manajero.manajerotddtasksmanagment.Services.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +22,8 @@ public class TestController {
 
     @Autowired
     private TestService service;
+    @Autowired
+    private TestRepository testRepository;
 
     @GetMapping
     public List<Tests> getAll() {
@@ -51,5 +57,24 @@ public class TestController {
        // test.setDescription(description);
 
         return service.update(id, t);
+    }
+
+    @GetMapping("/Kpis")
+    public ResponseEntity<Map<String, Object>> getTestKPIs() {
+        Map<String, Object> kpis = new HashMap<>();
+
+        long totalTests = testRepository.count();
+        long passedTests = testRepository.countByStatus(true);
+        long failedTests = testRepository.countByStatus(false);
+        double testPassRate = (totalTests > 0) ? (passedTests / (double) totalTests) * 100 : 0;
+      //  double avgTestDuration = testRepository.calculateAverageDuration();
+
+        kpis.put("totalTests", totalTests);
+        kpis.put("passedTests", passedTests);
+        kpis.put("failedTests", failedTests);
+        kpis.put("testPassRate", testPassRate);
+      //  kpis.put("avgTestDuration", avgTestDuration);
+
+        return ResponseEntity.ok(kpis);
     }
 }

@@ -1,11 +1,11 @@
 package manajero.manajerotddtasksmanagment;
 
-
 import manajero.manajerotddtasksmanagment.Entities.Tests;
 import manajero.manajerotddtasksmanagment.Repository.TestRepository;
 import manajero.manajerotddtasksmanagment.Services.TestService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -21,8 +21,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(CustomTestExecutionExtension.class)
 @SpringBootTest
 public class TestServiceTest {
+
     @InjectMocks
     private TestService testService;
 
@@ -35,7 +37,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void testGetAll() {
+    public void GetAll() {
         Tests test1 = new Tests();
         test1.setId("1");
         test1.setTitle("Test 1");
@@ -53,7 +55,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void testSave() {
+    public void Save() {
         Tests test = new Tests();
         test.setTitle("Test 1");
         test.setDescription("Description 1");
@@ -69,7 +71,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void testDelete() {
+    public void Delete() {
         String testId = "1";
         testService.delete(testId);
 
@@ -77,7 +79,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void testGetById() {
+    public void GetById() {
         Tests test = new Tests();
         test.setId("1");
         test.setTitle("Test 1");
@@ -92,7 +94,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void Update() {
         Tests existingTest = new Tests();
         existingTest.setId("1");
         existingTest.setTitle("Existing Test");
@@ -111,7 +113,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void testUpdateThrowsExceptionWhenNotFound() {
+    public void UpdateThrowsExceptionWhenNotFound() {
         Tests newTest = new Tests();
         newTest.setTitle("Updated Test");
         newTest.setDescription("Updated Description");
