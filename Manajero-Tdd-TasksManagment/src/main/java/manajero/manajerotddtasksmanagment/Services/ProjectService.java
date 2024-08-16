@@ -1,8 +1,8 @@
-package manajero.manajerotddProjectManagment.Services;
+package manajero.manajerotddtasksmanagment.Services;
 
 
-import manajero.manajerotddProjectManagment.Entities.Project;
-import manajero.manajerotddProjectManagment.Repository.ProjectRepository;
+import manajero.manajerotddtasksmanagment.Entities.Project;
+import manajero.manajerotddtasksmanagment.Repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

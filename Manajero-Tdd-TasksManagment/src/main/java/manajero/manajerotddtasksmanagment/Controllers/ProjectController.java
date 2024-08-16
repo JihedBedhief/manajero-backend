@@ -1,8 +1,9 @@
-package manajero.manajerotddProjectManagment.Controllers;
+package manajero.manajerotddtasksmanagment.Controllers;
 
 
-import manajero.manajerotddProjectManagment.Entities.Project;
-import manajero.manajerotddProjectManagment.Services.ProjectService;
+
+import manajero.manajerotddtasksmanagment.Entities.Project;
+import manajero.manajerotddtasksmanagment.Services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

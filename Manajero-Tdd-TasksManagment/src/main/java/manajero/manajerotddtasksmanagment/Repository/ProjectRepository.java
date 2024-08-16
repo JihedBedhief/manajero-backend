@@ -1,7 +1,7 @@
-package manajero.manajerotddProjectManagment.Repository;
+package manajero.manajerotddtasksmanagment.Repository;
 
 
-import manajero.manajerotddProjectManagment.Entities.Project;
+import manajero.manajerotddtasksmanagment.Entities.Project;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ProjectRepository extends MongoRepository<Project, String> {
