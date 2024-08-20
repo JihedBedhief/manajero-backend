@@ -2,6 +2,7 @@ package manajero.manajerotddtasksmanagment.Services;
 
 
 import manajero.manajerotddtasksmanagment.Entities.Project;
+import manajero.manajerotddtasksmanagment.Entities.ProjectDto;
 import manajero.manajerotddtasksmanagment.Repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,15 @@ public class ProjectService {
         return repository.findAll();
     }
 
-    public Project save(Project entity) {
-        return repository.save(entity);
+    public Project save(ProjectDto entity) {
+
+        Project p = new Project();
+        p.setName(entity.getName());
+        p.setDescription(entity.getDescription());
+        p.setStartDate(entity.getStartDate());
+        p.setEndDate(entity.getEndDate());
+
+        return repository.save(p);
     }
 
     public void delete(String id) {

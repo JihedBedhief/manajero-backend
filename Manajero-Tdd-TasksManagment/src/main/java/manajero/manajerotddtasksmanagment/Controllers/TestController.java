@@ -3,6 +3,8 @@ package manajero.manajerotddtasksmanagment.Controllers;
 
 
 import manajero.manajerotddtasksmanagment.Entities.Tests;
+import manajero.manajerotddtasksmanagment.Repository.ProjectRepository;
+import manajero.manajerotddtasksmanagment.Repository.TaskRepository;
 import manajero.manajerotddtasksmanagment.Repository.TestRepository;
 import manajero.manajerotddtasksmanagment.Services.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,10 @@ public class TestController {
     private TestService service;
     @Autowired
     private TestRepository testRepository;
+    @Autowired
+    private TaskRepository taskRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @GetMapping
     public List<Tests> getAll() {
@@ -59,6 +65,20 @@ public class TestController {
         return service.update(id, t);
     }
 
+
+    @GetMapping("/api/kpis")
+    public Object getKpiData(@RequestParam String entity) {
+        switch (entity.toLowerCase()) {
+            case "task":
+                return taskRepository.count();
+            case "test":
+                return testRepository.count();
+            case "project":
+                return projectRepository.count();
+            default:
+                throw new IllegalArgumentException("Invalid entity type: " + entity);
+        }
+    }
     @GetMapping("/Kpis")
     public ResponseEntity<Map<String, Object>> getTestKPIs() {
         Map<String, Object> kpis = new HashMap<>();

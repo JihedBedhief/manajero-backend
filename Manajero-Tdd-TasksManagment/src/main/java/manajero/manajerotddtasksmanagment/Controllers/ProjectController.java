@@ -3,6 +3,7 @@ package manajero.manajerotddtasksmanagment.Controllers;
 
 
 import manajero.manajerotddtasksmanagment.Entities.Project;
+import manajero.manajerotddtasksmanagment.Entities.ProjectDto;
 import manajero.manajerotddtasksmanagment.Services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class ProjectController {
     }
 
     @PostMapping
-    public Project save(@RequestBody Project entity) {
+    public Project save(@RequestBody ProjectDto entity) {
         return service.save(entity);
     }
 
