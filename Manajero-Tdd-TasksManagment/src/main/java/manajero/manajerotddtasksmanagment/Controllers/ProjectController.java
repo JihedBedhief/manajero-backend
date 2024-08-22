@@ -4,6 +4,7 @@ package manajero.manajerotddtasksmanagment.Controllers;
 
 import manajero.manajerotddtasksmanagment.Entities.Project;
 import manajero.manajerotddtasksmanagment.Entities.ProjectDto;
+import manajero.manajerotddtasksmanagment.Entities.ProjectWithTaskCount;
 import manajero.manajerotddtasksmanagment.Services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +43,10 @@ public class ProjectController {
     @PutMapping("/{id}")
     public Project update(@PathVariable String id, @RequestBody Project newEntity) {
         return service.update(id, newEntity);
+    }
+
+    @GetMapping("/with-task-counts")
+    public List<ProjectWithTaskCount> getProjectsWithTaskCounts() {
+        return service.getProjectsWithTaskCounts();
     }
 }
