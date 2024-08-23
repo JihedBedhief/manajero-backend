@@ -27,7 +27,9 @@ public class ProjectService {
     @Autowired
     private ArchiveService archiveService;
 
-
+public Project getProjectById(String id) {
+    return repository.findById(id).get();
+}
     public List<ProjectWithTaskCount> getProjectsWithTaskCounts() {
         List<Project> projects = repository.findAll();
         return projects.stream().map(project -> {

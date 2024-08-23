@@ -198,4 +198,12 @@ public class TaskService {
 
         return tasksByProjects;
     }
+
+
+    public Task updateTaskStatus(String status,String id ){
+        Task task = taskRepository.findById(id).get();
+        task.setStatus(status);
+        return taskRepository.save(task);
+
+    }
 }

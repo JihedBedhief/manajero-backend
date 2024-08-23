@@ -110,4 +110,9 @@ public class TaskController {
     public  List<Task> getTasksByProject(@PathVariable("project_id") String project_id){
         return taskService.TasksByProject(project_id);
     }
+
+    @PatchMapping("/task/status/{id}")
+    public Task updateStatus(@RequestBody String status, @PathVariable String id){
+        return taskService.updateTaskStatus(status,id);
+    }
 }
