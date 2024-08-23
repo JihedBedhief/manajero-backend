@@ -187,4 +187,15 @@ public class TaskService {
         }
 
     }
+
+
+
+    public List<Task> TasksByProject(String projectId){
+        List<Task> tasksByProjects= taskRepository.findByProject_Id(projectId);
+        for (Task t:tasksByProjects){
+            log.info("task "+ t);
+        }
+
+        return tasksByProjects;
+    }
 }

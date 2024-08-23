@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>Manajero</groupId>
-    <artifactId>Manajero-Tdd-TestManagment</artifactId>
+    <artifactId>Manajero-Tdd-TaskManagment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Manajero-Tdd-TestManagment</name>
-    <description>Manajero-Tdd-TestManagment</description>
+    <name>Manajero-Tdd-TaskManagment</name>
+    <description>Manajero-Tdd-TaskManagment</description>
     <url/>
     <licenses>
         <license/>
