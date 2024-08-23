@@ -16,6 +16,8 @@ public class TestService {
 
     @Autowired
     private TestRepository repository;
+    @Autowired
+    private ArchiveService archiveService;
 
     public List<Tests> getAll() {
         return repository.findAll();
@@ -23,7 +25,7 @@ public class TestService {
 
     public Tests save(Tests entity) {
         entity.setStatus(false);
-
+        archiveService.archiveEntities();
         return repository.save(entity);
     }
 

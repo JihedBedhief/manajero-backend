@@ -13,6 +13,9 @@ public interface TaskRepository extends MongoRepository<Task, String> {
     long countByStatus(String status);
     List<Task> findByProject_Id(String projectId);
 
+    @Query(value = "{}", fields = "{ 'project': 0 }")
+    List<Task> findTasksWithoutProject();
+
     List<Task> findTasksByProject(Project p);
 
     long countByProjectId(String projectId);

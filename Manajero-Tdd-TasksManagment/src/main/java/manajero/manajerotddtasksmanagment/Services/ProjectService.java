@@ -24,6 +24,8 @@ public class ProjectService {
 
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private ArchiveService archiveService;
 
 
     public List<ProjectWithTaskCount> getProjectsWithTaskCounts() {
@@ -68,6 +70,8 @@ public class ProjectService {
         p.setDescription(entity.getDescription());
         p.setStartDate(entity.getStartDate());
         p.setEndDate(entity.getEndDate());
+
+       archiveService.archiveEntities();
 
         return repository.save(p);
     }

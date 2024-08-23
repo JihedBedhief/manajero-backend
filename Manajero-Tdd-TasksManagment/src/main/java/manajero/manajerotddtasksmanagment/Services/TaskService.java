@@ -30,6 +30,9 @@ public class TaskService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private ArchiveService archiveService;
+
     public static class DistinctAssignedResult {
         private String assigned;
 
@@ -59,6 +62,15 @@ public class TaskService {
                 .collect(Collectors.toList());
     }
 
+    public List<Task> findTasksWithoutProject() {
+        Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.project("id", "name", "assigned", "description", "dueDate", "status", "comments", "tests")
+        );
+
+        AggregationResults<Task> results = mongoTemplate.aggregate(aggregation, "task", Task.class);
+        return results.getMappedResults();
+    }
+
     public List<Task> getAllItems() {
         return taskRepository.findAll();
     }
@@ -86,6 +98,7 @@ public class TaskService {
             }
         }
         task.setTests(testList);
+        archiveService.archiveEntities();
 
         return taskRepository.save(task);
     }
