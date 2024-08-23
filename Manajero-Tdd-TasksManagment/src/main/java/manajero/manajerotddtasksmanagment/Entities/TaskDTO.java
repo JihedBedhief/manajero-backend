@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 public class TaskDTO {
     private String id;
+
     private String name;
     private String project;
     private String assigned;
