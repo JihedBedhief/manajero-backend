@@ -73,4 +73,32 @@ public class ArchiveService {
 
 
     }
+
+    public void updateprojArchive(Project p ){
+        List<Archive> l =archiveRepository.findAll();
+        for (Archive i:l
+             ) {
+            List<Project> projects =i.getProjects();
+            projects.add(p);
+            archiveRepository.save(i);
+        }
+    }
+    public void updatetaskArchive(Task p ){
+        List<Archive> l =archiveRepository.findAll();
+        for (Archive i:l
+        ) {
+            List<Task> projects =i.getTasks();
+            projects.add(p);
+            archiveRepository.save(i);
+        }
+    }
+    public void updatetestArchive(Tests p ){
+        List<Archive> l =archiveRepository.findAll();
+        for (Archive i:l
+        ) {
+            List<Tests> projects =i.getTsts();
+            projects.add(p);
+            archiveRepository.save(i);
+        }
+    }
 }

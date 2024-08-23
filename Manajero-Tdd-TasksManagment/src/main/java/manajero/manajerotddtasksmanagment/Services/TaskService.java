@@ -98,7 +98,7 @@ public class TaskService {
             }
         }
         task.setTests(testList);
-        archiveService.archiveEntities();
+        archiveService.updatetaskArchive(task);
 
         return taskRepository.save(task);
     }

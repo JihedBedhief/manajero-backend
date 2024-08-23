@@ -71,7 +71,7 @@ public class ProjectService {
         p.setStartDate(entity.getStartDate());
         p.setEndDate(entity.getEndDate());
 
-       archiveService.archiveEntities();
+       archiveService.updateprojArchive(p);
 
         return repository.save(p);
     }

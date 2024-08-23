@@ -25,7 +25,7 @@ public class TestService {
 
     public Tests save(Tests entity) {
         entity.setStatus(false);
-        archiveService.archiveEntities();
+        archiveService.updatetestArchive(entity);
         return repository.save(entity);
     }
 
