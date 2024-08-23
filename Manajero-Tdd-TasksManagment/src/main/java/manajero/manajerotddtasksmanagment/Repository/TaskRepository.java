@@ -31,4 +31,5 @@ public interface TaskRepository extends MongoRepository<Task, String> {
                 .collect(Collectors.toList());
     }
 
+    List<Task> findTasksByProjectId(String projectId);
 }

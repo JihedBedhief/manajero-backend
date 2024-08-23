@@ -104,4 +104,10 @@ public class TaskController {
     public List<ColaboratorWithTaskCount> getAssignedsWithTaskCounts() {
         return taskService.getAssignedsWithTaskCounts();
     }
+
+
+    @GetMapping("/tasks/{project_id}")
+    public  List<Task> getTasksByProject(@PathVariable("project_id") String project_id){
+        return taskService.TasksByProject(project_id);
+    }
 }
